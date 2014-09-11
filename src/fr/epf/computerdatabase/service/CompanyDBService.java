@@ -26,7 +26,7 @@ public class CompanyDBService {
 		companyDAO.create(company);
 	}
 
-	private CompanyDAO companyDAO = companyDAO.getInstance();
+	private CompanyDAO companyDAO = CompanyDAO.getInstance();
 
 	public List<Company> getAll() {
 		return companyDAO.getAll();
