@@ -33,9 +33,13 @@ public class DashboardController extends HttpServlet {
 		// Add the company list
 		req.setAttribute("companies", companyDBService.getAll());
 
+		System.out.println("Before");
+		System.out.println(computers);
+		System.out.println("After");
+
 		// Get the dispatcher JSP
 		RequestDispatcher dispatcher = req
-				.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
+				.getRequestDispatcher("dashboard.jsp");
 
 		// Forward the request
 		dispatcher.forward(req, resp);
