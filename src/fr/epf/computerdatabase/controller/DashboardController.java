@@ -67,7 +67,7 @@ public class DashboardController extends HttpServlet {
 	private Computer populateComputer(HttpServletRequest req) {
 		// Get form data
 		String name = (String) req.getParameter("name");
-		Timestamp introduced = (Timestamp) req.getParameter("introduced");
+		Timestamp introduced = Timestamp.valueOf(req.getParameter("introduced"));
 
 		Computer computer = Computer.builder().name(name)
 				.introduced(introduced).build();
