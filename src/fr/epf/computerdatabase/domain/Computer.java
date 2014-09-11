@@ -60,6 +60,10 @@ public class Computer {
 			computer.id_company = id_company;
 			return this;
 		}
+		
+		public Computer build() {
+			return computer;
+		}
 	}
 
 	public Long getId() {
