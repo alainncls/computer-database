@@ -3,17 +3,16 @@ package fr.epf.computerdatabase.domain;
 import java.sql.Timestamp;
 
 public class Computer {
-	
+
 	private Long id;
 	private String name;
 	private Timestamp introduced;
 	private Timestamp discontinued;
 	private Long id_company;
-	
-	
-	public Computer(){
+
+	public Computer() {
 	}
-	
+
 	public Computer(Long id, String name, Timestamp introduced,
 			Timestamp discontinued, Long id_company) {
 		super();
@@ -23,44 +22,43 @@ public class Computer {
 		this.discontinued = discontinued;
 		this.id_company = id_company;
 	}
-	
-	
-	public static Builder builder(){
+
+	public static Builder builder() {
 		return new Builder();
 	}
-	
+
 	public static class Builder {
 		private Computer computer;
-		
+
 		private Builder() {
 			computer = new Computer();
 		}
-		
+
 		public Builder id(Long id) {
 			computer.id = id;
 			return this;
 		}
-		
+
 		public Builder name(String name) {
 			computer.name = name;
 			return this;
 		}
-		
+
 		public Builder introduced(Timestamp introduced) {
 			computer.introduced = introduced;
 			return this;
 		}
-		
+
 		public Builder discontinued(Timestamp discontinued) {
 			computer.discontinued = discontinued;
 			return this;
 		}
-		
+
 		public Builder id_company(Long id_company) {
 			computer.id_company = id_company;
 			return this;
 		}
-		
+
 		public Computer build() {
 			return computer;
 		}
@@ -69,33 +67,43 @@ public class Computer {
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Timestamp getIntroduced() {
 		return introduced;
 	}
+
 	public void setIntroduced(Timestamp introduced) {
 		this.introduced = introduced;
 	}
+
 	public Timestamp getDiscontinued() {
 		return discontinued;
 	}
+
 	public void setDiscontinued(Timestamp discontinued) {
 		this.discontinued = discontinued;
 	}
+
 	public Long getId_company() {
 		return id_company;
 	}
+
 	public void setId_company(Long id_company) {
 		this.id_company = id_company;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,6 +118,7 @@ public class Computer {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -146,11 +155,12 @@ public class Computer {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Computer [id=" + id + ", name=" + name + ", introduced="
 				+ introduced + ", discontinued=" + discontinued
 				+ ", id_company=" + id_company + "]";
 	}
-	
+
 }

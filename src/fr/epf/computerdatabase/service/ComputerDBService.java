@@ -6,29 +6,29 @@ import fr.epf.computerdatabase.dao.ComputerDAO;
 import fr.epf.computerdatabase.domain.Computer;
 
 public class ComputerDBService {
-private static ComputerDBService instance = null ;
-	
+	private static ComputerDBService instance = null;
+
 	// Static : has to be call without an instance
-	public static ComputerDBService getInstance(){
-		
-		if(instance == null){
+	public static ComputerDBService getInstance() {
+
+		if (instance == null) {
 			// If there is no instance yet just, create it.
 			instance = new ComputerDBService();
-		} 
+		}
 		return instance;
 	}
-	
-	private ComputerDBService(){
-		
+
+	private ComputerDBService() {
+
 	}
-	
-	public void create(Computer computer){
+
+	public void create(Computer computer) {
 		computerDAO.create(computer);
 	}
-	
+
 	private ComputerDAO computerDAO = ComputerDAO.getInstance();
-		
-	public List<Computer> getAll(){
+
+	public List<Computer> getAll() {
 		return computerDAO.getAll();
 	}
 }
