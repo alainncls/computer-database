@@ -1,11 +1,13 @@
 package fr.epf.computerdatabase.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +16,7 @@ import fr.epf.computerdatabase.domain.Computer;
 import fr.epf.computerdatabase.service.CompanyDBService;
 import fr.epf.computerdatabase.service.ComputerDBService;
 
-public class DashboardController {
+public class DashboardController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -55,30 +57,28 @@ public class DashboardController {
 		CompanyDBService serviceCompany = CompanyDBService.getInstance();
 
 		// Persist the computer
-		service.create(computer);
+		serviceComputer.create(computer);
 		// Persist the company
-		service.create(company);
+		serviceCompany.create(company);
 
 		doGet(req, resp);
 	}
 
 	private Computer populateComputer(HttpServletRequest req) {
 		// Get form data
-		String firstName = (String) req.getParameter("firstName");
-		String lastName = (String) req.getParameter("lastName");
+		String name = (String) req.getParameter("name");
+		Timestamp introduced = (Timestamp) req.getParameter("introduced");
 
-		Computer computer = Computer.builder().firstName(firstName)
-				.lastName(lastName).build();
+		Computer computer = Computer.builder().name(name)
+				.introduced(introduced).build();
 		return computer;
 	}
-	
+
 	private Company populateCompany(HttpServletRequest req) {
 		// Get form data
-		String firstName = (String) req.getParameter("firstName");
-		String lastName = (String) req.getParameter("lastName");
+		String name = (String) req.getParameter("name");
 
-		Company company = Company.builder().firstName(firstName)
-				.lastName(lastName).build();
+		Company company = Company.builder().name(name).build();
 		return company;
 	}
 }
