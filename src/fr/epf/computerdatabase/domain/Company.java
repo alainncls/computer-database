@@ -4,32 +4,41 @@ public class Company {
 
 	private Long id;
 	private String name;
-	
+
+	public Company() {
+	}
+
+	public Company(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
 	public static Builder builder() {
 		return new Builder();
 	}
-	
+
 	public static class Builder {
 		private Company company;
-		
+
 		private Builder() {
 			company = new Company();
 		}
-		
+
 		public Builder id(Long id) {
 			company.id = id;
 			return this;
 		}
-		
+
 		public Builder name(String name) {
 			company.name = name;
 			return this;
 		}
-		
+
 		public Company build() {
 			return company;
 		}
-		
+
 	}
 
 	public long getId() {
