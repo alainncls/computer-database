@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.epf.computerdatabase.domain.Company;
 import fr.epf.computerdatabase.domain.Computer;
+import fr.epf.computerdatabase.service.CompanyDBService;
 import fr.epf.computerdatabase.service.ComputerDBService;
 
 public class DashboardController {
@@ -17,64 +19,66 @@ public class DashboardController {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//Get a service
+		// Get a service
 		ComputerDBService computerDBService = ComputerDBService.getInstance();
-		
-		
-		List<Computer> computers = new ArrayList<>();
-		
-		//GEt user with id 1
-		//users.add(userDBService.get(1l));
-		
-		//Add the user list
-		req.setAttribute("users", computerDBService.getAll());
-		
-		//
-		
-		//Get the dispatcher JSP
-		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
+		CompanyDBService companyDBService = CompanyDBService.getInstance();
 
-		//Forward the request
+		List<Computer> computers = new ArrayList<>();
+		List<Company> companies = new ArrayList<>();
+
+		// Add the computer list
+		req.setAttribute("computers", computerDBService.getAll());
+		// Add the company list
+		req.setAttribute("companies", companyDBService.getAll());
+
+		// Get the dispatcher JSP
+		RequestDispatcher dispatcher = req
+				.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
+
+		// Forward the request
 		dispatcher.forward(req, resp);
-		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		//Get user form request
+
+		// Get computer form request
 		Computer computer = populateComputer(req);
-		
+		// Get company form request
+		Company company = populateCompany(req);
 
 		System.out.println(computer);
-		
-		
-		ComputerDBService service = ComputerDBService.getInstance();
-		
-		//Persist the user
+		System.out.println(company);
+
+		ComputerDBService serviceComputer = ComputerDBService.getInstance();
+		CompanyDBService serviceCompany = CompanyDBService.getInstance();
+
+		// Persist the computer
 		service.create(computer);
-		
-		doGet(req,resp);
-		
-		
+		// Persist the company
+		service.create(company);
+
+		doGet(req, resp);
 	}
 
-	private Computer populateUser(HttpServletRequest req) {
-		//GEt form data
-		String firstName = (String)req.getParameter("firstName");
-		String lastName = (String)req.getParameter("lastName");
-		
-		Computer computer = Computer.builder()
-				.firstName(firstName)
-				.lastName(lastName)
-				.build();
+	private Computer populateComputer(HttpServletRequest req) {
+		// Get form data
+		String firstName = (String) req.getParameter("firstName");
+		String lastName = (String) req.getParameter("lastName");
+
+		Computer computer = Computer.builder().firstName(firstName)
+				.lastName(lastName).build();
 		return computer;
 	}
 	
-	
-	
-	
+	private Company populateCompany(HttpServletRequest req) {
+		// Get form data
+		String firstName = (String) req.getParameter("firstName");
+		String lastName = (String) req.getParameter("lastName");
 
+		Company company = Company.builder().firstName(firstName)
+				.lastName(lastName).build();
+		return company;
+	}
 }
