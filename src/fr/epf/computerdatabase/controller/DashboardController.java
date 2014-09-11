@@ -70,8 +70,11 @@ public class DashboardController extends HttpServlet {
 		Timestamp introduced = Timestamp
 				.valueOf(req.getParameter("introduced"));
 
+		Timestamp discontinued = Timestamp.valueOf(req
+				.getParameter("discontinued"));
+
 		Computer computer = Computer.builder().name(name)
-				.introduced(introduced).build();
+				.introduced(introduced).discontinued(discontinued).build();
 		return computer;
 	}
 
