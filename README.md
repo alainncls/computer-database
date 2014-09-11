@@ -1,4 +1,4 @@
-training-computer-database-template
+JEE Project - Computer Database
 ============================
 
 ### Fonctionnalités minimales
