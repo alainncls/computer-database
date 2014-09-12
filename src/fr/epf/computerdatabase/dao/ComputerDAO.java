@@ -52,6 +52,18 @@ public enum ComputerDAO {
 			}
 		}
 	}
+	
+	public List<Computer> getAll(Integer start, Integer length) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return em.createQuery("SELECT c FROM Computer c").setFirstResult(start).setMaxResults(length).getResultList();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
 
 	public Computer get(Long id) {
 		EntityManager em = null;

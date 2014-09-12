@@ -32,6 +32,10 @@ public class ComputerDBService {
 		return computerDAO.getAll();
 	}
 	
+	public List<Computer> getAll(Integer start, Integer length) {
+		return computerDAO.getAll(start, length);
+	}
+	
 	public Computer get(Long id) {
 		return computerDAO.get(id);
 	}
