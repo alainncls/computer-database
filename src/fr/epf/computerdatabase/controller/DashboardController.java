@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.epf.computerdatabase.dao.ComputerDAO;
 import fr.epf.computerdatabase.domain.Company;
 import fr.epf.computerdatabase.domain.Computer;
 import fr.epf.computerdatabase.service.CompanyDBService;
@@ -31,7 +30,7 @@ public class DashboardController extends HttpServlet {
 		List<Computer> computers = new ArrayList<>();
 		List<Company> companies = new ArrayList<>();
 
-		computers = computerDBService.getAll();
+		//computers = computerDBService.getAll();
 		companies = companyDBService.getAll();
 
 		int page = 1;
@@ -39,11 +38,13 @@ public class DashboardController extends HttpServlet {
 		if (req.getParameter("page") != null)
 			page = Integer.parseInt(req.getParameter("page"));
 
-		List<Computer> list = computers.getAll((page - 1) * recordsPerPage,
+		List<Computer> listTotal = computerDBService.getAll();
+		
+		computers = computerDBService.getAll((page - 1) * recordsPerPage,
 				recordsPerPage);
-		int noOfRecords = list.getNoOfRecords();
+		int noOfRecords = listTotal.size();
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-		req.setAttribute("employeeList", list);
+		req.setAttribute("computerList", computers);
 		req.setAttribute("noOfPages", noOfPages);
 		req.setAttribute("currentPage", page);
 
@@ -55,9 +56,6 @@ public class DashboardController extends HttpServlet {
 		// Get the dispatcher JSP
 		RequestDispatcher dispatcher = req
 				.getRequestDispatcher("/WEB-INF/dashboard.jsp");
-
-		RequestDispatcher view = request
-				.getRequestDispatcher("displayEmployee.jsp");
 
 		// Forward the request
 		dispatcher.forward(req, resp);
