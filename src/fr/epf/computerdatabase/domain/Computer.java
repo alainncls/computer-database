@@ -2,12 +2,26 @@ package fr.epf.computerdatabase.domain;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="computer")
 public class Computer {
 
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Column(name="name")
 	private String name;
+	@Column(name="introduced")
 	private Timestamp introduced;
+	@Column(name="discontinued")
 	private Timestamp discontinued;
+	@Column(name="company_id")
 	private Long id_company;
 
 	public Computer() {

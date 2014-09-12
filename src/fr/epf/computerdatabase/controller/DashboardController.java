@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import fr.epf.computerdatabase.domain.Computer;
 import fr.epf.computerdatabase.service.CompanyDBService;
 import fr.epf.computerdatabase.service.ComputerDBService;
 
+@WebServlet("/")
 public class DashboardController extends HttpServlet {
 
 	@Override
@@ -28,18 +30,17 @@ public class DashboardController extends HttpServlet {
 		List<Computer> computers = new ArrayList<>();
 		List<Company> companies = new ArrayList<>();
 
-		// Add the computer list
-		req.setAttribute("computers", computerDBService.getAll());
-		// Add the company list
-		req.setAttribute("companies", companyDBService.getAll());
+		computers = computerDBService.getAll();
+		companies = companyDBService.getAll();
 
-		System.out.println("Before");
-		System.out.println(computers);
-		System.out.println("After");
+		// Add the computer list
+		req.setAttribute("computers", computers);
+		// Add the company list
+		req.setAttribute("companies", companies);
 
 		// Get the dispatcher JSP
 		RequestDispatcher dispatcher = req
-				.getRequestDispatcher("dashboard.jsp");
+				.getRequestDispatcher("/WEB-INF/dashboard.jsp");
 
 		// Forward the request
 		dispatcher.forward(req, resp);

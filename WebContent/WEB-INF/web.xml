@@ -5,6 +5,6 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>computer-database</display-name>
 	<welcome-file-list>
-		<welcome-file>dashboard.jsp</welcome-file>
+		<welcome-file>dashboard</welcome-file>
 	</welcome-file-list>
 </web-app>

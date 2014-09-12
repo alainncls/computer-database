@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 
-	<persistence-unit name="userdatabase-PU">
+	<persistence-unit name="computerdatabase-PU">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<!-- the JNDI data source -->
-		<non-jta-data-source>java:comp/env/jdbc/userdatabase-ds</non-jta-data-source>
+		<non-jta-data-source>java:comp/env/jdbc/computerdatabase-ds</non-jta-data-source>
 		<properties>
 			<!-- if this is true, hibernate will print (to stdout) the SQL it executes, 
 				so you can check it to ensure it's not doing anything crazy -->
