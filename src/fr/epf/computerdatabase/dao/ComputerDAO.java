@@ -52,4 +52,16 @@ public enum ComputerDAO {
 			}
 		}
 	}
+
+	public Computer get(Long id) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return (Computer) em.createQuery("SELECT c FROM Computer c WHERE c.id="+id).getSingleResult();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
 }

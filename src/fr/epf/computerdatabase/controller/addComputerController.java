@@ -25,17 +25,12 @@ public class addComputerController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// Get a service
-		ComputerDBService computerDBService = ComputerDBService.getInstance();
 		CompanyDBService companyDBService = CompanyDBService.getInstance();
 
-		List<Computer> computers = new ArrayList<>();
 		List<Company> companies = new ArrayList<>();
 
-		computers = computerDBService.getAll();
 		companies = companyDBService.getAll();
 
-		// Add the computer list
-		req.setAttribute("computers", computers);
 		// Add the company list
 		req.setAttribute("companies", companies);
 
@@ -54,18 +49,14 @@ public class addComputerController extends HttpServlet {
 		// Get computer form request
 		Computer computer = populateComputer(req);
 		// Get company form request
-		Company company = populateCompany(req);
 
 		System.out.println(computer);
-		System.out.println(company);
 
 		ComputerDBService serviceComputer = ComputerDBService.getInstance();
-		CompanyDBService serviceCompany = CompanyDBService.getInstance();
+		
 
 		// Persist the computer
 		serviceComputer.create(computer);
-		// Persist the company
-		serviceCompany.create(company);
 
 		doGet(req, resp);
 	}
@@ -78,17 +69,12 @@ public class addComputerController extends HttpServlet {
 
 		Timestamp discontinued = Timestamp.valueOf(req
 				.getParameter("discontinued"));
+		
+		CompanyDBService serviceCompany = CompanyDBService.getInstance();
+		Company company = serviceCompany.get(Long.valueOf(req.getParameter("company")));
 
 		Computer computer = Computer.builder().name(name)
-				.introduced(introduced).discontinued(discontinued).build();
+				.introduced(introduced).discontinued(discontinued).company(company).build();
 		return computer;
-	}
-
-	private Company populateCompany(HttpServletRequest req) {
-		// Get form data
-		String name = (String) req.getParameter("name");
-
-		Company company = Company.builder().name(name).build();
-		return company;
 	}
 }

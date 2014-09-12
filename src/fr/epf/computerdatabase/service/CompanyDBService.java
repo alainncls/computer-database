@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.epf.computerdatabase.dao.CompanyDAO;
 import fr.epf.computerdatabase.domain.Company;
+import fr.epf.computerdatabase.domain.Computer;
 
 public class CompanyDBService {
 	private static CompanyDBService instance = null;
@@ -30,5 +31,9 @@ public class CompanyDBService {
 
 	public List<Company> getAll() {
 		return companyDAO.getAll();
+	}
+	
+	public Company get(Long id) {
+		return companyDAO.get(id);
 	}
 }

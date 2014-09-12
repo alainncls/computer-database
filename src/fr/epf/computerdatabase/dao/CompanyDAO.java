@@ -52,4 +52,16 @@ public enum CompanyDAO {
 			}
 		}
 	}
+	
+	public Company get(Long id) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return (Company)em.createQuery("SELECT c FROM Company c WHERE c.id="+id).getSingleResult();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
 }
