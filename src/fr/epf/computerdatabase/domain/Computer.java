@@ -4,37 +4,45 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
-@Table(name="computer")
+@Table(name = "computer")
 public class Computer {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
-	@Column(name="introduced")
+	@Column(name = "introduced")
 	private Timestamp introduced;
-	@Column(name="discontinued")
+	@Column(name = "discontinued")
 	private Timestamp discontinued;
-	@Column(name="company_id")
-	private Long id_company;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="company_id", nullable=true)
+	@Fetch(FetchMode.JOIN)
+	private Company company;
 
 	public Computer() {
 	}
 
 	public Computer(Long id, String name, Timestamp introduced,
-			Timestamp discontinued, Long id_company) {
+			Timestamp discontinued, Company company) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.introduced = introduced;
 		this.discontinued = discontinued;
-		this.id_company = id_company;
+		this.company = company;
 	}
 
 	public static Builder builder() {
@@ -68,8 +76,8 @@ public class Computer {
 			return this;
 		}
 
-		public Builder id_company(Long id_company) {
-			computer.id_company = id_company;
+		public Builder company(Company company) {
+			computer.company = company;
 			return this;
 		}
 
@@ -110,12 +118,12 @@ public class Computer {
 		this.discontinued = discontinued;
 	}
 
-	public Long getId_company() {
-		return id_company;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setId_company(Long id_company) {
-		this.id_company = id_company;
+	public void setId_company(Company company) {
+		this.company = company;
 	}
 
 	@Override
@@ -126,7 +134,7 @@ public class Computer {
 				+ ((discontinued == null) ? 0 : discontinued.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((id_company == null) ? 0 : id_company.hashCode());
+				+ ((company == null) ? 0 : company.hashCode());
 		result = prime * result
 				+ ((introduced == null) ? 0 : introduced.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -152,10 +160,10 @@ public class Computer {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (id_company == null) {
-			if (other.id_company != null)
+		if (company == null) {
+			if (other.company != null)
 				return false;
-		} else if (!id_company.equals(other.id_company))
+		} else if (!company.equals(other.company))
 			return false;
 		if (introduced == null) {
 			if (other.introduced != null)
@@ -174,7 +182,7 @@ public class Computer {
 	public String toString() {
 		return "Computer [id=" + id + ", name=" + name + ", introduced="
 				+ introduced + ", discontinued=" + discontinued
-				+ ", id_company=" + id_company + "]";
+				+ ", id_company=" + company + "]";
 	}
 
 }

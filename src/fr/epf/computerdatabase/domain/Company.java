@@ -7,13 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="company")
+@Table(name = "company")
 public class Company {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
 
 	public Company() {

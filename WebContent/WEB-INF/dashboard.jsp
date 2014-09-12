@@ -17,7 +17,7 @@
 			</form>
 		</div>
 		<div class="col-md-2">
-			<a id="add" href="addComputer.jsp" role="button"
+			<a id="add" href="addComputer" role="button"
 				class="btn btn-success pull-right">Add Computer</a>
 		</div>
 	</div>
@@ -42,7 +42,7 @@
 							<td><a href="#" onclick="">${computer.name}</a></td>
 							<td>${computer.introduced}</td>
 							<td>${computer.discontinued}</td>
-							<td>${computer.id_company}</td>
+							<td>${computer.company.name}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
