@@ -17,6 +17,7 @@ import fr.epf.computerdatabase.domain.Computer;
 import fr.epf.computerdatabase.service.CompanyDBService;
 import fr.epf.computerdatabase.service.ComputerDBService;
 
+@SuppressWarnings("serial")
 @WebServlet("/")
 public class DashboardController extends HttpServlet {
 

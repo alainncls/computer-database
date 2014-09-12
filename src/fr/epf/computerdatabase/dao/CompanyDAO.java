@@ -40,6 +40,7 @@ public enum CompanyDAO {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Company> getAll() {
 		EntityManager em = null;
 		try {

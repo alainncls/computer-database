@@ -40,6 +40,7 @@ public enum ComputerDAO {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Computer> getAll() {
 		EntityManager em = null;
 		try {
