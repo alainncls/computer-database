@@ -25,6 +25,10 @@ public class ComputerDBService {
 	public void create(Computer computer) {
 		computerDAO.create(computer);
 	}
+	
+	public void update(Computer computer) {
+		computerDAO.update(computer);
+	}
 
 	private ComputerDAO computerDAO = ComputerDAO.getInstance();
 

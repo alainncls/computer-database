@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import fr.epf.computerdatabase.domain.Computer;
 
@@ -32,6 +33,20 @@ public enum ComputerDAO {
 			em = getEntityManager();
 			em.getTransaction().begin();
 			em.persist(computer);
+			em.getTransaction().commit();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	public void update(Computer computer) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			em.getTransaction().begin();
+			em.merge(computer);
 			em.getTransaction().commit();
 		} finally {
 			if (em != null) {
@@ -67,9 +82,12 @@ public enum ComputerDAO {
 
 	public Computer get(Long id) {
 		EntityManager em = null;
+		Query q = null;
 		try {
 			em = getEntityManager();
-			return (Computer) em.createQuery("SELECT c FROM Computer c WHERE c.id="+id).getSingleResult();
+			q = em.createQuery("SELECT c FROM Computer c WHERE c.id=?1");
+			q.setParameter(1, id);
+			return (Computer) q.getSingleResult();
 		} finally {
 			if (em != null) {
 				em.close();
