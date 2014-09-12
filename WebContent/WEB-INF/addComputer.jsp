@@ -10,7 +10,7 @@
 
 	<div class="row">
 		<div class="col-md-4">
-			<form role="form" action="addComputer.jsp" method="POST">
+			<form role="form" action="addComputer" method="POST">
 				<div class="form-group">
 					<label for="name">Computer name</label> <input type="text"
 						class="form-control" id="name" placeholder="Enter name"
@@ -41,7 +41,7 @@
 				</div>
 
 				<div class="actions">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<input type="submit" class="btn btn-success" value="Submit" />
 					or <a href="dashboard" class="btn btn-danger">Cancel</a>
 				</div>
 			</form>
