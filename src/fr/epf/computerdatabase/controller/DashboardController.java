@@ -18,7 +18,7 @@ import fr.epf.computerdatabase.service.CompanyDBService;
 import fr.epf.computerdatabase.service.ComputerDBService;
 
 @SuppressWarnings("serial")
-@WebServlet("/")
+@WebServlet("/dashboard")
 public class DashboardController extends HttpServlet {
 
 	@Override
