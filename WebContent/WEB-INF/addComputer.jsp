@@ -42,11 +42,9 @@
 
 				<div class="actions">
 					<button type="submit" class="btn btn-success">Submit</button>
-					or <a href="dashboard.jsp" class="btn btn-danger">Cancel</a>
+					or <a href="dashboard" class="btn btn-danger">Cancel</a>
 				</div>
 			</form>
-
-
 		</div>
 	</div>
 </div>
