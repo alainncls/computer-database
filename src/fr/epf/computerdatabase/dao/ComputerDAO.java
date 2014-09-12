@@ -41,6 +41,20 @@ public enum ComputerDAO {
 		}
 	}
 
+	public void update(Computer computer) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			em.getTransaction().begin();
+			em.merge(computer);
+			em.getTransaction().commit();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Computer> getAll() {
 		EntityManager em = null;
@@ -85,11 +99,12 @@ public enum ComputerDAO {
 
 	public Computer get(Long id) {
 		EntityManager em = null;
+		Query q = null;
 		try {
 			em = getEntityManager();
-			return (Computer) em.createQuery(
-					"SELECT c FROM Computer c WHERE c.id=" + id)
-					.getSingleResult();
+			q = em.createQuery("SELECT c FROM Computer c WHERE c.id=?1");
+			q.setParameter(1, id);
+			return (Computer) q.getSingleResult();
 		} finally {
 			if (em != null) {
 				em.close();

@@ -2,9 +2,7 @@ package fr.epf.computerdatabase.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -28,17 +26,24 @@ public class addComputerController extends HttpServlet {
 			throws ServletException, IOException {
 		// Get a service
 		CompanyDBService companyDBService = CompanyDBService.getInstance();
+		ComputerDBService computerDBService = ComputerDBService.getInstance();
 
-		List<Company> companies = new ArrayList<>();
-
-		companies = companyDBService.getAll();
+		List<Company> companies = companyDBService.getAll();
+		Computer computer = null;
+		String id = req.getParameter("id");
+		if(id!=null){
+			computer = computerDBService.get(Long.valueOf(id));
+		}else{
+			computer = new Computer();
+		}
+		
 
 		// Add the company list
 		req.setAttribute("companies", companies);
+		req.setAttribute("computer", computer);
 
 		// Get the dispatcher JSP
-		RequestDispatcher dispatcher = req
-				.getRequestDispatcher("/WEB-INF/addComputer.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/addComputer.jsp");
 
 		// Forward the request
 		dispatcher.forward(req, resp);
@@ -50,16 +55,16 @@ public class addComputerController extends HttpServlet {
 
 		// Get computer form request
 		Computer computer = populateComputer(req);
-		// Get company form request
-
-		System.out.println(computer);
-
 		ComputerDBService serviceComputer = ComputerDBService.getInstance();
 		
-
-		// Persist the computer
-		serviceComputer.create(computer);
-
+		String id = req.getParameter("id");
+		if(id!=null){
+			// Persist the computer
+			serviceComputer.create(computer);
+		}else{
+			// Merge the computer
+			serviceComputer.update(computer);
+		}
 		doGet(req, resp);
 	}
 
