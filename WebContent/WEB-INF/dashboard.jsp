@@ -5,7 +5,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 id="homeTitle">${fn:length(computers)}Computers found</h1>
+			<h1 id="homeTitle">${noOfRecords} computers found</h1>
 		</div>
 	</div>
 	<div class="row" id="actions">
@@ -51,32 +51,32 @@
 		</div>
 	</div>
 	<div class="row">
-		<%--For displaying Previous link except for the 1st page --%>
-	<c:if test="${currentPage != 1}">
-		<td><a href="?page=${currentPage - 1}">Previous</a></td>
-	</c:if>
+		<div class="col-md-12">
+			<div class="text-center">
+				<ul class="pagination pagination-sm">
+					<c:if test="${currentPage != 1}">
+						<li><a href="?page=${currentPage - 1}">Previous</a></li>
+					</c:if>
 
-	<%--For displaying Page numbers. 
-	The when condition does not display a link for the current page--%>
-	<table border="1" cellpadding="5" cellspacing="5">
-		<tr>
-			<c:forEach begin="1" end="${noOfPages}" var="i">
-				<c:choose>
-					<c:when test="${currentPage eq i}">
-						<td>${i}</td>
-					</c:when>
-					<c:otherwise>
-						<td><a href="?page=${i}">${i}</a></td>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</tr>
-	</table>
-	
-	<%--For displaying Next link --%>
-	<c:if test="${currentPage lt noOfPages}">
-		<td><a href="?page=${currentPage + 1}">Next</a></td>
-	</c:if>
+					<c:forEach begin="${(currentPage - 3)<0?1:currentPage-3}"
+						end="${(currentPage + 3)>noOfPages?noOfPages:currentPage + 3}"
+						var="i">
+						<c:choose>
+							<c:when test="${currentPage eq i}">
+								<li class="active"><a href="">${i}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="?page=${i}">${i}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+
+					<c:if test="${currentPage lt noOfPages}">
+						<li><a href="?page=${currentPage + 1}">Next</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import fr.epf.computerdatabase.domain.Computer;
 
@@ -52,12 +53,29 @@ public enum ComputerDAO {
 			}
 		}
 	}
-	
+
+	public List<Computer> getAll(String search) {
+		EntityManager em = null;
+		Query q = null;
+		try {
+			em = getEntityManager();
+			q = em.createQuery("SELECT c FROM Computer c WHERE c.name LIKE :genre");
+			q.setParameter("genre", "%" + search + "%");
+			return q.getResultList();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
 	public List<Computer> getAll(Integer start, Integer length) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
-			return em.createQuery("SELECT c FROM Computer c").setFirstResult(start).setMaxResults(length).getResultList();
+			return em.createQuery("SELECT c FROM Computer c")
+					.setFirstResult(start).setMaxResults(length)
+					.getResultList();
 		} finally {
 			if (em != null) {
 				em.close();
@@ -69,7 +87,9 @@ public enum ComputerDAO {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
-			return (Computer) em.createQuery("SELECT c FROM Computer c WHERE c.id="+id).getSingleResult();
+			return (Computer) em.createQuery(
+					"SELECT c FROM Computer c WHERE c.id=" + id)
+					.getSingleResult();
 		} finally {
 			if (em != null) {
 				em.close();

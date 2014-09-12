@@ -32,6 +32,10 @@ public class ComputerDBService {
 		return computerDAO.getAll();
 	}
 	
+	public List<Computer> getAll(String search) {
+		return computerDAO.getAll();
+	}
+	
 	public List<Computer> getAll(Integer start, Integer length) {
 		return computerDAO.getAll(start, length);
 	}

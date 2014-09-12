@@ -30,26 +30,30 @@ public class DashboardController extends HttpServlet {
 		List<Computer> computers = new ArrayList<>();
 		List<Company> companies = new ArrayList<>();
 
-		//computers = computerDBService.getAll();
+		computers = computerDBService.getAll();
 		companies = companyDBService.getAll();
+		
+		String search = "";
+		if (req.getParameter("search") != null)
+			search = req.getParameter("search");
+		
+		computers = computerDBService.getAll(search);
 
 		int page = 1;
-		int recordsPerPage = 5;
+		int recordsPerPage = 10;
 		if (req.getParameter("page") != null)
 			page = Integer.parseInt(req.getParameter("page"));
-
-		List<Computer> listTotal = computerDBService.getAll();
 		
-		computers = computerDBService.getAll((page - 1) * recordsPerPage,
-				recordsPerPage);
-		int noOfRecords = listTotal.size();
+		int noOfRecords = computers.size();
+		computers = computers.subList((page - 1) * recordsPerPage, (page - 1) * recordsPerPage + recordsPerPage);
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-		req.setAttribute("computerList", computers);
-		req.setAttribute("noOfPages", noOfPages);
-		req.setAttribute("currentPage", page);
 
 		// Add the computer list
 		req.setAttribute("computers", computers);
+		req.setAttribute("noOfPages", noOfPages);
+		req.setAttribute("noOfRecords", noOfRecords);
+		req.setAttribute("currentPage", page);
+		
 		// Add the company list
 		req.setAttribute("companies", companies);
 
