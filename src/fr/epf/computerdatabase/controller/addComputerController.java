@@ -2,7 +2,9 @@ package fr.epf.computerdatabase.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -63,12 +65,12 @@ public class addComputerController extends HttpServlet {
 
 	private Computer populateComputer(HttpServletRequest req) {
 		// Get form data
-		String name = (String) req.getParameter("name");
-		Timestamp introduced = Timestamp
-				.valueOf(req.getParameter("introduced"));
+		String name = req.getParameter("name");
 
 		Timestamp discontinued = Timestamp.valueOf(req
-				.getParameter("discontinued"));
+				.getParameter("discontinued")+" 00:00:00");
+		Timestamp introduced = Timestamp.valueOf(req
+				.getParameter("introduced")+" 00:00:00");
 		
 		CompanyDBService serviceCompany = CompanyDBService.getInstance();
 		Company company = serviceCompany.get(Long.valueOf(req.getParameter("company")));
