@@ -1,10 +1,11 @@
 <jsp:include page="../include/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 id="homeTitle">456 Computers found</h1>
+			<h1 id="homeTitle">${fn:length(computers)} Computers found</h1>
 		</div>
 	</div>
 	<div class="row" id="actions">
