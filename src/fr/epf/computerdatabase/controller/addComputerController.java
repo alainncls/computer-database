@@ -58,11 +58,12 @@ public class addComputerController extends HttpServlet {
 		ComputerDBService serviceComputer = ComputerDBService.getInstance();
 		
 		String id = req.getParameter("id");
-		if(id!=null){
+		if(id==null){
 			// Persist the computer
 			serviceComputer.create(computer);
 		}else{
 			// Merge the computer
+			computer.setId(Long.valueOf(id));
 			serviceComputer.update(computer);
 		}
 		doGet(req, resp);
