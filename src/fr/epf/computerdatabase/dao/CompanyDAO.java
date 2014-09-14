@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import fr.epf.computerdatabase.domain.Company;
+import fr.epf.computerdatabase.domain.Computer;
 
 public enum CompanyDAO {
 
@@ -57,7 +58,19 @@ public enum CompanyDAO {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
-			return (Company)em.createQuery("SELECT c FROM Company c WHERE c.id="+id).getSingleResult();
+			return em.find(Company.class, id);
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	public Long getCount() {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return (Long) em.createQuery("SELECT count(c.id) FROM Company c").getSingleResult();
 		} finally {
 			if (em != null) {
 				em.close();

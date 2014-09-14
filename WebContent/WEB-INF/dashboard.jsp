@@ -11,10 +11,8 @@
 	<div class="row" id="actions">
 		<div class="col-md-10">
 			<form action="" method="GET" class="form-inline" role="form">
-				<input type="search" id="searchbox" name="search"
-					class="form-control" value="" placeholder="Search name"> <input
-					type="submit" id="searchsubmit" value="Filter by name"
-					class="btn btn-primary">
+				<input type="search" id="searchbox" name="search" class="form-control" value="${search}" placeholder="Search name" /> 
+				<input type="submit" id="searchsubmit" value="Filter by name" class="btn btn-primary" />
 			</form>
 		</div>
 		<div class="col-md-2">
@@ -40,7 +38,7 @@
 				<tbody>
 					<c:forEach items="${computers}" var="computer">
 						<tr>
-							<td><a href="#" onclick="">${computer.name}</a></td>
+							<td><a href="addComputer?id=${computer.id}" onclick="">${computer.name}</a></td>
 							<td>${computer.introduced}</td>
 							<td>${computer.discontinued}</td>
 							<td>${computer.company.name}</td>
@@ -55,10 +53,10 @@
 			<div class="text-center">
 				<ul class="pagination pagination-sm">
 					<c:if test="${currentPage != 1}">
-						<li><a href="?page=${currentPage - 1}">Previous</a></li>
+						<li><a href="?page=${currentPage - 1}&search=${search}">Previous</a></li>
 					</c:if>
 
-					<c:forEach begin="${(currentPage - 3)<0?1:currentPage-3}"
+					<c:forEach begin="${(currentPage - 3)<=0?1:currentPage-3}"
 						end="${(currentPage + 3)>noOfPages?noOfPages:currentPage + 3}"
 						var="i">
 						<c:choose>
@@ -66,13 +64,13 @@
 								<li class="active"><a href="">${i}</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="?page=${i}">${i}</a></li>
+								<li><a href="?page=${i}&search=${search}">${i}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:if test="${currentPage lt noOfPages}">
-						<li><a href="?page=${currentPage + 1}">Next</a></li>
+						<li><a href="?page=${currentPage + 1}&search=${search}">Next</a></li>
 					</c:if>
 				</ul>
 			</div>

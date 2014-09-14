@@ -1,5 +1,6 @@
 package fr.epf.computerdatabase.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -70,12 +71,12 @@ public enum ComputerDAO {
 
 	public List<Computer> getAll(String search) {
 		EntityManager em = null;
-		Query q = null;
 		try {
 			em = getEntityManager();
-			q = em.createQuery("SELECT c FROM Computer c WHERE c.name LIKE :genre");
-			q.setParameter("genre", "%" + search + "%");
-			return q.getResultList();
+			return em
+					.createQuery(
+							"SELECT c FROM Computer c WHERE c.name LIKE :genre")
+					.setParameter("genre", "%" + search + "%").getResultList();
 		} finally {
 			if (em != null) {
 				em.close();
@@ -97,14 +98,55 @@ public enum ComputerDAO {
 		}
 	}
 
-	public Computer get(Long id) {
+	public List<Computer> getAll(String search, Integer start, Integer length) {
 		EntityManager em = null;
-		Query q = null;
 		try {
 			em = getEntityManager();
-			q = em.createQuery("SELECT c FROM Computer c WHERE c.id=?1");
-			q.setParameter(1, id);
-			return (Computer) q.getSingleResult();
+			return em
+					.createQuery(
+							"SELECT c FROM Computer c WHERE c.name LIKE :search")
+					.setFirstResult(start).setMaxResults(length)
+					.setParameter("search", "%" + search + "%").getResultList();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
+	public Computer get(Long id) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return em.find(Computer.class, id);
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
+	public Long getCount() {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return (Long) em.createQuery("SELECT count(c.id) FROM Computer c")
+					.getSingleResult();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
+	public Long getCount(String search) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return (Long) em
+					.createQuery("SELECT count(c.id) FROM Computer c WHERE c.name LIKE :search")
+					.setParameter("search", "%" + search + "%")
+					.getSingleResult();
 		} finally {
 			if (em != null) {
 				em.close();

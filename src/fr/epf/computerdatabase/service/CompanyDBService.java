@@ -36,4 +36,8 @@ public class CompanyDBService {
 	public Company get(Long id) {
 		return companyDAO.get(id);
 	}
+	
+	public Long getCount() {
+		return companyDAO.getCount();
+	}
 }

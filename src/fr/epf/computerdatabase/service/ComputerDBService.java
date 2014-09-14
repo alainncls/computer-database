@@ -25,7 +25,7 @@ public class ComputerDBService {
 	public void create(Computer computer) {
 		computerDAO.create(computer);
 	}
-	
+
 	public void update(Computer computer) {
 		computerDAO.update(computer);
 	}
@@ -35,16 +35,37 @@ public class ComputerDBService {
 	public List<Computer> getAll() {
 		return computerDAO.getAll();
 	}
-	
+
 	public List<Computer> getAll(String search) {
+		if (search != null && !search.isEmpty()) {
+			return computerDAO.getAll(search);
+		}
 		return computerDAO.getAll();
 	}
-	
+
 	public List<Computer> getAll(Integer start, Integer length) {
 		return computerDAO.getAll(start, length);
 	}
-	
+
+	public List<Computer> getAll(String search, Integer start, Integer length) {
+		if (search != null && !search.isEmpty()) {
+			return computerDAO.getAll(search, start, length);
+		}
+		return computerDAO.getAll(start, length);
+	}
+
 	public Computer get(Long id) {
 		return computerDAO.get(id);
+	}
+
+	public Long getCount() {
+		return computerDAO.getCount();
+	}
+
+	public Long getCount(String search) {
+		if (search != null && !search.isEmpty()) {
+			return computerDAO.getCount(search);
+		}
+		return computerDAO.getCount();
 	}
 }

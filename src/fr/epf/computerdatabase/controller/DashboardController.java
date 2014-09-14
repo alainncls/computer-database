@@ -25,37 +25,36 @@ public class DashboardController extends HttpServlet {
 			throws ServletException, IOException {
 		// Get a service
 		ComputerDBService computerDBService = ComputerDBService.getInstance();
-		CompanyDBService companyDBService = CompanyDBService.getInstance();
 
 		List<Computer> computers = new ArrayList<>();
-		List<Company> companies = new ArrayList<>();
 
-		computers = computerDBService.getAll();
-		companies = companyDBService.getAll();
-		
+		// computers = computerDBService.getAll();
+
 		String search = "";
-		if (req.getParameter("search") != null)
+		if (req.getParameter("search") != null) {
 			search = req.getParameter("search");
-		
-		computers = computerDBService.getAll(search);
+		}
 
 		int page = 1;
 		int recordsPerPage = 10;
-		if (req.getParameter("page") != null)
+		if (req.getParameter("page") != null) {
 			page = Integer.parseInt(req.getParameter("page"));
+		}
 		
-		int noOfRecords = computers.size();
-		computers = computers.subList((page - 1) * recordsPerPage, (page - 1) * recordsPerPage + recordsPerPage);
+		computers = computerDBService.getAll(search, (page - 1)
+				* recordsPerPage, recordsPerPage);
+		
+		long noOfRecords = computerDBService.getCount(search);
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
+		
 
 		// Add the computer list
 		req.setAttribute("computers", computers);
 		req.setAttribute("noOfPages", noOfPages);
 		req.setAttribute("noOfRecords", noOfRecords);
 		req.setAttribute("currentPage", page);
-		
-		// Add the company list
-		req.setAttribute("companies", companies);
+		req.setAttribute("search", search);
 
 		// Get the dispatcher JSP
 		RequestDispatcher dispatcher = req
