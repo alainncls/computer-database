@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link href="css/main.css" rel="stylesheet" media="screen">
 
@@ -13,13 +14,8 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<a class="navbar-brand" href="dashboard.jsp">Application -
-					Computer Database</a>
-			</div>
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
+	<div class="page-header">
+		<h1>
+			EPF Computer Database <small>A JEE project</small>
+		</h1>
+	</div>

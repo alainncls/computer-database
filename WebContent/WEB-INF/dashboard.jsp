@@ -5,19 +5,22 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 id="homeTitle">${noOfRecords} computers found</h1>
+			<h1 id="homeTitle">${noOfRecords}computers found</h1>
 		</div>
 	</div>
 	<div class="row" id="actions">
 		<div class="col-md-10">
 			<form action="" method="GET" class="form-inline" role="form">
-				<input type="search" id="searchbox" name="search" class="form-control" value="${search}" placeholder="Search name" /> 
-				<input type="submit" id="searchsubmit" value="Filter by name" class="btn btn-primary" />
+				<input type="search" id="searchbox" name="search"
+					class="form-control" value="${search}" placeholder="Search name" />
+				<input type="submit" id="searchsubmit" value="Filter by name"
+					class="btn btn-primary" />
 			</form>
 		</div>
 		<div class="col-md-2">
 			<a id="add" href="addComputer" role="button"
-				class="btn btn-success pull-right">Add Computer</a>
+				class="btn btn-success pull-right"><span
+				class="glyphicon glyphicon-plus"></span></a>
 		</div>
 	</div>
 	<div class="row">
@@ -44,9 +47,19 @@
 							<td>${computer.discontinued}</td>
 							<td>${computer.company.name}</td>
 							<td>
-								<form role="form" action="dashboard?page=${currentPage}&search=${search}" method="POST" class="form-inline">
-									<a href="addComputer?id=${computer.id}"><button type="button" class="btn btn-warning btn-sm" name="edit" data-toggle="tooltip" data-placement="top" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></button></a>
-									<button type="submit" class="btn btn-danger btn-sm" name="delete" value="${computer.id}" data-toggle="tooltip" data-placement="top" title="Supprimer"><span class="glyphicon glyphicon-trash"></span></button>
+								<form role="form"
+									action="dashboard?page=${currentPage}&search=${search}"
+									method="POST" class="form-inline">
+									<a href="addComputer?id=${computer.id}"><button
+											type="button" class="btn btn-warning btn-sm" name="edit"
+											data-toggle="tooltip" data-placement="top" title="Modifier">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button></a>
+									<button type="submit" class="btn btn-danger btn-sm"
+										name="delete" value="${computer.id}" data-toggle="tooltip"
+										data-placement="top" title="Supprimer">
+										<span class="glyphicon glyphicon-trash"></span>
+									</button>
 								</form>
 							</td>
 						</tr>

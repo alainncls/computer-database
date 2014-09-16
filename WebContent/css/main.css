@@ -1,28 +1,20 @@
-html {
-    background: #eee;
-}
-
 header h1 {
-    padding: 0.4em 1.1em;
-    color: white;
-    font-weight: normal;
-    font-size: 24px;
+	padding: 0.4em 1.1em;
+	color: white;
+	font-weight: normal;
+	font-size: 24px;
 }
-
 
 table.computers em {
-    color: #aaa;
+	color: #aaa;
 }
 
 table.computers .introduced, table.computers .discontinued {
-    width: 10%;
-    min-width: 100px;
+	width: 10%;
+	min-width: 100px;
 }
 
 table.computers .company_name {
-    width: 30%;
-    min-width: 300px;
-}
-
-table.computers .header a {
+	width: 30%;
+	min-width: 300px;
 }
