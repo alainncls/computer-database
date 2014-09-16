@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.epf.computerdatabase.domain.Company;
 import fr.epf.computerdatabase.domain.Computer;
-import fr.epf.computerdatabase.service.CompanyDBService;
 import fr.epf.computerdatabase.service.ComputerDBService;
 
 @SuppressWarnings("serial")

@@ -2,7 +2,6 @@ package fr.epf.computerdatabase.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;

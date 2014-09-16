@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import fr.epf.computerdatabase.domain.Company;
-import fr.epf.computerdatabase.domain.Computer;
 
 public enum CompanyDAO {
 
