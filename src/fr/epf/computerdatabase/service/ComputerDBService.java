@@ -68,4 +68,8 @@ public class ComputerDBService {
 		}
 		return computerDAO.getCount();
 	}
+
+	public boolean delete(Long id) {
+		return computerDAO.delete(id);
+	}
 }

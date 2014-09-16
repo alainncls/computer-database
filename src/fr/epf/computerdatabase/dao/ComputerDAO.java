@@ -144,13 +144,30 @@ public enum ComputerDAO {
 		try {
 			em = getEntityManager();
 			return (Long) em
-					.createQuery("SELECT count(c.id) FROM Computer c WHERE c.name LIKE :search")
+					.createQuery(
+							"SELECT count(c.id) FROM Computer c WHERE c.name LIKE :search")
 					.setParameter("search", "%" + search + "%")
 					.getSingleResult();
 		} finally {
 			if (em != null) {
 				em.close();
 			}
+		}
+	}
+
+	public boolean delete(Long id) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			em.getTransaction().begin();
+			em.remove(em.find(Computer.class, id));
+			em.getTransaction().commit();
+		} finally {
+			if (em != null) {
+				em.close();
+				return true;
+			}
+			return false;
 		}
 	}
 }

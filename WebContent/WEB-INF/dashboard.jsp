@@ -33,6 +33,7 @@
 						<th>Discontinued Date</th>
 						<!-- Table header for Company -->
 						<th>Company</th>
+						<th>Options</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,6 +43,12 @@
 							<td>${computer.introduced}</td>
 							<td>${computer.discontinued}</td>
 							<td>${computer.company.name}</td>
+							<td>
+								<form role="form" action="dashboard?page=${currentPage}&search=${search}" method="POST" class="form-inline">
+									<a href="addComputer?id=${computer.id}"><button type="button" class="btn btn-warning btn-sm" name="edit" data-toggle="tooltip" data-placement="top" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></button></a>
+									<button type="submit" class="btn btn-danger btn-sm" name="delete" value="${computer.id}" data-toggle="tooltip" data-placement="top" title="Supprimer"><span class="glyphicon glyphicon-trash"></span></button>
+								</form>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

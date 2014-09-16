@@ -63,4 +63,20 @@ public class DashboardController extends HttpServlet {
 		// Forward the request
 		dispatcher.forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		ComputerDBService serviceComputer = ComputerDBService.getInstance();
+		
+		String id = req.getParameter("delete");
+		if(id!=null){
+			// Persist the computer
+			serviceComputer.delete(Long.valueOf(id));
+		}
+		req.setAttribute("search", req.getParameter("search"));
+		req.setAttribute("page", req.getParameter("page"));
+		doGet(req, resp);
+	}
 }
