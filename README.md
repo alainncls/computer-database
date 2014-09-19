@@ -1,14 +1,14 @@
 JEE Project - Computer Database
 ============================
 
-### FonctionnalitÃ©s minimales
-* Lister les ordinateurs Ã  partir de la BDD
+### Fonctionnalités minimales
+* Lister les ordinateurs à  partir de la BDD
 * Ajouter un ordinateur
 * Proposer une structure avec DAO, Service et controleur
 * Utiliser une DataSoure et Hibernate comme ORM
 * Utiliser des tags JSTL dans votre JSP
 
-### FonctionnalitÃ©s bonus
+### Fonctionnalités bonus
 * Interface jolie
 * Requete Ajax
 * Pagination de la liste
