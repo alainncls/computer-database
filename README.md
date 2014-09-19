@@ -1,30 +1,25 @@
 JEE Project - Computer Database
 ===============================
 
-NICOLAS Alain - AUGUY Vivien
-----------------------------
+##NICOLAS Alain - AUGUY Vivien
 
-### Fonctionnalités minimales
+### Fonctionnalités minimales réalisées
 * Lister les ordinateurs à  partir de la BDD
 * Ajouter un ordinateur
-* Proposer une structure avec DAO, Service et controleur
-* Utiliser une DataSoure et Hibernate comme ORM
-* Utiliser des tags JSTL dans votre JSP
+* Utilisation de DAO, Service et Controller
+* Utilisation d'une DataSoure et d'Hibernate
+* Utilisation des tags JSTL dans les JSP
 
-### Fonctionnalités bonus
-* Interface jolie
-* Requete Ajax
+### Fonctionnalités bonus réalisées
+* Interface simpliste et épurée
+* (!) Requête Ajax
 * Pagination de la liste
 * Recherche d'ordinateurs
-* Suppression d'oridnateurs
-* Ajoutez vos propre idÃ©es...
+* Suppression d'ordinateurs
+* (!) Autres idées
 
-### Instructions
-1. CrÃ©ez sous eclipse un nouveau projet "Dymanic web project"
-2. Lancez votre serveur mysql et executez les scripts 1 et 2
-3. Codez en suivant la démarche, expliquée dans le [projet userdatabase](https://github.com/ablanchard/userdatabase)
-
-* Envoyez votre projet avant le 27/09/14 Ã  ablanchard@excilys.com
-* Soit le repo Github
-* Soit le war avec les sources (Sous eclipse File -> Export -> Web -> WAR file -> cochez export sources files)
-
+### Instructions pour exécution
+1 - Télécharger le .zip
+2 - Lancer un serveur avec la BDD (scripts joints)
+3 - Exécuter le projet sur un serveur (Tomcat 8.0)
+4 - Enjoy
