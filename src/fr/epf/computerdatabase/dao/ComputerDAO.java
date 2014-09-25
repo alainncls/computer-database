@@ -96,14 +96,15 @@ public enum ComputerDAO {
 		}
 	}
 
-	public List<Computer> getAll(String search, Integer start, Integer length) {
+	public List<Computer> getAll(String searchType, String search, Integer start, Integer length) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			return em
 					.createQuery(
-							"SELECT c FROM Computer c WHERE c.name LIKE :search")
+							"SELECT c FROM Computer c WHERE :type LIKE :search")
 					.setFirstResult(start).setMaxResults(length)
+					.setParameter("type", "%" + searchType + "%")
 					.setParameter("search", "%" + search + "%").getResultList();
 		} finally {
 			if (em != null) {

@@ -29,8 +29,16 @@ public class DashboardController extends HttpServlet {
 		// computers = computerDBService.getAll();
 
 		String search = "";
+		String searchType = "";
+		
 		if (req.getParameter("search") != null) {
 			search = req.getParameter("search");
+			searchType="name";
+		}
+		
+		if (req.getParameter("searchCompany") != null) {
+			search = req.getParameter("searchCompany");
+			searchType="company";
 		}
 
 		int page = 1;
@@ -39,7 +47,7 @@ public class DashboardController extends HttpServlet {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
 		
-		computers = computerDBService.getAll(search, (page - 1)
+		computers = computerDBService.getAll(searchType, search, (page - 1)
 				* recordsPerPage, recordsPerPage);
 		
 		long noOfRecords = computerDBService.getCount(search);

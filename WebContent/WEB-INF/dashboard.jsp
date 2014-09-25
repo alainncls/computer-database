@@ -5,7 +5,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 id="homeTitle">${noOfRecords}computers found</h1>
+			<h1 id="homeTitle">${noOfRecords}computersfound</h1>
 		</div>
 	</div>
 	<div class="row" id="actions">
@@ -14,6 +14,14 @@
 				<input type="search" id="searchbox" name="search"
 					class="form-control" value="${search}" placeholder="Search name" />
 				<input type="submit" id="searchsubmit" value="Filter by name"
+					class="btn btn-primary" />
+			</form>
+		</div>
+		<div class="col-md-10">
+			<form action="" method="GET" class="form-inline" role="form">
+				<input type="search" id="searchbox" name="search"
+					class="form-control" value="${searchCompany}" placeholder="Search company" />
+				<input type="submit" id="searchsubmit" value="Filter by company"
 					class="btn btn-primary" />
 			</form>
 		</div>

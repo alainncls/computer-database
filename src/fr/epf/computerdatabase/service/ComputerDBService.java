@@ -47,9 +47,9 @@ public class ComputerDBService {
 		return computerDAO.getAll(start, length);
 	}
 
-	public List<Computer> getAll(String search, Integer start, Integer length) {
-		if (search != null && !search.isEmpty()) {
-			return computerDAO.getAll(search, start, length);
+	public List<Computer> getAll(String searchType, String search, Integer start, Integer length) {
+		if (searchType != null && !searchType.isEmpty() && search != null && !search.isEmpty()) {
+			return computerDAO.getAll(searchType, search, start, length);
 		}
 		return computerDAO.getAll(start, length);
 	}
