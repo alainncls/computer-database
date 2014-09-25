@@ -49,27 +49,23 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${computers}" var="computer">
-						<tr>
+						<tr id="tr${computer.id}">
 							<td><a href="addComputer?id=${computer.id}" onclick="">${computer.name}</a></td>
 							<td>${computer.introduced}</td>
 							<td>${computer.discontinued}</td>
 							<td>${computer.company.name}</td>
-							<td>
-								<form role="form"
-									action="dashboard?page=${currentPage}&search=${search}"
-									method="POST" class="form-inline">
-									<a href="addComputer?id=${computer.id}"><button
-											type="button" class="btn btn-warning btn-sm" name="edit"
-											data-toggle="tooltip" data-placement="top" title="Modifier">
-											<span class="glyphicon glyphicon-pencil"></span>
-										</button></a>
-									<button type="submit" class="btn btn-danger btn-sm"
-										name="delete" value="${computer.id}" data-toggle="tooltip"
-										data-placement="top" title="Supprimer">
-										<span class="glyphicon glyphicon-trash"></span>
+							<td><a href="addComputer?id=${computer.id}">
+									<button type="button" class="btn btn-warning btn-sm"
+										name="edit" data-toggle="tooltip" data-placement="top"
+										title="Modifier">
+										<span class="glyphicon glyphicon-pencil"></span>
 									</button>
-								</form>
-							</td>
+							</a>
+								<button type="button" class="btn btn-danger btn-sm"
+									name="delete" value="${computer.id}" data-toggle="tooltip"
+									data-placement="top" title="Supprimer">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -105,5 +101,17 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(function() {
+		$('button[name=delete]').click(function() {
+			var id = $(this).val();
+			$.post("deleteComputer", {
+				"delete" : $(this).val()
+			}, function(data) {
+				$('#tr'+id).remove();
+			});
+		});
+	});
+</script>
 
 <jsp:include page="/include/footer.jsp" />
