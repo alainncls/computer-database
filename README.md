@@ -12,11 +12,11 @@ JEE Project - Computer Database
 
 ### Fonctionnalités bonus réalisées
 * Interface simpliste et épurée
-* (!) Requête Ajax
+* Requête Ajax sur la suppression d'un ordinateur
 * Pagination de la liste
 * Recherche d'ordinateurs
 * Suppression d'ordinateurs
-* (!) Autres idées
+* Import de Font Awesome
 
 ### Instructions pour exécution
 1 - Télécharger le .zip

@@ -3,28 +3,31 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<h1 id="homeTitle">${noOfRecords}computersfound</h1>
+	<div class="number">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 id="homeTitle">${noOfRecords}&nbsp;computers&nbsp;found</h1>
+			</div>
 		</div>
 	</div>
-	<div class="row" id="actions">
-		<div class="col-md-10">
-			<form action="" method="GET" class="form-inline" role="form">
-				<input type="search" id="searchbox" name="searchName"
-					class="form-control" value="${searchName}" placeholder="Search name" />
-				<input type="search" id="searchbox" name="searchCompany"
-					class="form-control" value="${searchCompany}" placeholder="Search company" />
-					
-					
-				<input type="submit" id="searchsubmit" value="Filter"
-					class="btn btn-primary" />
-			</form>
-		</div>
-		<div class="col-md-2">
-			<a id="add" href="addComputer" role="button"
-				class="btn btn-success pull-right"><span
-				class="glyphicon glyphicon-plus"></span></a>
+	<div class="filters">
+		<div class="row" id="actions">
+			<div class="col-md-10">
+				<form action="" method="GET" class="form-inline" role="form">
+					<input type="search" id="searchbox" name="searchName"
+						class="form-control" value="${searchName}"
+						placeholder="Filter by name" /> <input type="search"
+						id="searchbox" name="searchCompany" class="form-control"
+						value="${searchCompany}" placeholder="Filter by company" /> <input
+						type="submit" id="searchsubmit" value="Apply filter(s)"
+						class="btn btn-primary" />
+				</form>
+			</div>
+			<div class="col-md-2">
+				<a id="add" href="addComputer" role="button"
+					class="btn btn-success pull-right"><span
+					class="glyphicon glyphicon-plus"></span>&nbsp;Add computer</a>
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -53,13 +56,13 @@
 							<td><a href="addComputer?id=${computer.id}">
 									<button type="button" class="btn btn-warning btn-sm"
 										name="edit" data-toggle="tooltip" data-placement="top"
-										title="Modifier">
+										title="Edit">
 										<span class="glyphicon glyphicon-pencil"></span>
 									</button>
 							</a>
 								<button type="button" class="btn btn-danger btn-sm"
 									name="delete" value="${computer.id}" data-toggle="tooltip"
-									data-placement="top" title="Supprimer">
+									data-placement="top" title="Delete">
 									<span class="glyphicon glyphicon-trash"></span>
 								</button></td>
 						</tr>
@@ -73,7 +76,8 @@
 			<div class="text-center">
 				<ul class="pagination pagination-sm">
 					<c:if test="${currentPage != 1}">
-						<li><a href="?page=${currentPage - 1}&searchName=${searchName}&searchCompany=${searchCompany}">Previous</a></li>
+						<li><a
+							href="?page=${currentPage - 1}&searchName=${searchName}&searchCompany=${searchCompany}">Previous</a></li>
 					</c:if>
 
 					<c:forEach begin="${(currentPage - 3)<=0?1:currentPage-3}"
@@ -84,13 +88,15 @@
 								<li class="active"><a href="">${i}</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="?page=${i}&searchName=${searchName}&searchCompany=${searchCompany}">${i}</a></li>
+								<li><a
+									href="?page=${i}&searchName=${searchName}&searchCompany=${searchCompany}">${i}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:if test="${currentPage lt noOfPages}">
-						<li><a href="?page=${currentPage + 1}&searchName=${searchName}&searchCompany=${searchCompany}">Next</a></li>
+						<li><a
+							href="?page=${currentPage + 1}&searchName=${searchName}&searchCompany=${searchCompany}">Next</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -104,7 +110,7 @@
 			$.post("deleteComputer", {
 				"delete" : $(this).val()
 			}, function(data) {
-				$('#tr'+id).remove();
+				$('#tr' + id).remove();
 			});
 		});
 	});
