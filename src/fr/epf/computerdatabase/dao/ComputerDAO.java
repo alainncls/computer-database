@@ -96,16 +96,34 @@ public enum ComputerDAO {
 		}
 	}
 
-	public List<Computer> getAll(String searchType, String search, Integer start, Integer length) {
+	public List<Computer> getAll(Integer start, Integer length, String searchName ) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			return em
 					.createQuery(
-							"SELECT c FROM Computer c WHERE :type LIKE :search")
+							"SELECT c FROM Computer c  WHERE c.name LIKE :searchName")
 					.setFirstResult(start).setMaxResults(length)
-					.setParameter("type", "%" + searchType + "%")
-					.setParameter("search", "%" + search + "%").getResultList();
+					.setParameter("searchName", "%" + searchName + "%")
+					.getResultList();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	public List<Computer> getAll(Integer start, Integer length, String searchName, String searchCompany ) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return em
+					.createQuery(
+							"SELECT c FROM Computer c  WHERE c.name LIKE :searchName AND c.company.name LIKE :searchCompany")
+					.setFirstResult(start).setMaxResults(length)
+					.setParameter("searchName", "%" + searchName + "%")
+					.setParameter("searchCompany", "%" + searchCompany + "%")
+					.getResultList();
 		} finally {
 			if (em != null) {
 				em.close();
@@ -138,14 +156,31 @@ public enum ComputerDAO {
 		}
 	}
 
-	public Long getCount(String search) {
+	public Long getCount(String searchName) {
 		EntityManager em = null;
 		try {
 			em = getEntityManager();
 			return (Long) em
 					.createQuery(
-							"SELECT count(c.id) FROM Computer c WHERE c.name LIKE :search")
-					.setParameter("search", "%" + search + "%")
+							"SELECT count(c.id) FROM Computer c WHERE c.name LIKE :searchName")
+					.setParameter("searchName", "%" + searchName + "%")
+					.getSingleResult();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	public Long getCount(String searchName, String searchCompany) {
+		EntityManager em = null;
+		try {
+			em = getEntityManager();
+			return (Long) em
+					.createQuery(
+							"SELECT count(c.id) FROM Computer c WHERE c.name LIKE :searchName AND c.company.name LIKE :searchCompany")
+					.setParameter("searchName", "%" + searchName + "%")
+					.setParameter("searchCompany", "%" + searchCompany + "%")
 					.getSingleResult();
 		} finally {
 			if (em != null) {

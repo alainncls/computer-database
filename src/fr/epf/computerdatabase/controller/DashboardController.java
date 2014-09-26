@@ -26,17 +26,15 @@ public class DashboardController extends HttpServlet {
 
 		List<Computer> computers = new ArrayList<>();
 
-		String search = "";
-		String searchType = "";
-		
-		if (req.getParameter("search") != null) {
-			search = req.getParameter("search");
-			searchType="name";
+		String searchName = "";
+		String searchCompany = "";
+
+		if (req.getParameter("searchName") != null) {
+			searchName = req.getParameter("searchName");
 		}
-		
+
 		if (req.getParameter("searchCompany") != null) {
-			search = req.getParameter("searchCompany");
-			searchType="company";
+			searchCompany = req.getParameter("searchCompany");
 		}
 
 		int page = 1;
@@ -44,21 +42,21 @@ public class DashboardController extends HttpServlet {
 		if (req.getParameter("page") != null) {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
-		
-		computers = computerDBService.getAll(searchType, search, (page - 1)
-				* recordsPerPage, recordsPerPage);
-		
-		long noOfRecords = computerDBService.getCount(search);
-		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
-		
+		computers = computerDBService.getAll((page - 1) * recordsPerPage,
+				recordsPerPage, searchName, searchCompany);
+
+		long noOfRecords = computerDBService
+				.getCount(searchName, searchCompany);
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
 		// Add the computer list
 		req.setAttribute("computers", computers);
 		req.setAttribute("noOfPages", noOfPages);
 		req.setAttribute("noOfRecords", noOfRecords);
 		req.setAttribute("currentPage", page);
-		req.setAttribute("search", search);
+		req.setAttribute("searchName", searchName);
+		req.setAttribute("searchCompany", searchCompany);
 
 		// Get the dispatcher JSP
 		RequestDispatcher dispatcher = req
@@ -67,19 +65,20 @@ public class DashboardController extends HttpServlet {
 		// Forward the request
 		dispatcher.forward(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		ComputerDBService serviceComputer = ComputerDBService.getInstance();
-		
+
 		String id = req.getParameter("delete");
-		if(id!=null){
+		if (id != null) {
 			// Persist the computer
 			serviceComputer.delete(Long.valueOf(id));
 		}
-		req.setAttribute("search", req.getParameter("search"));
+		req.setAttribute("searchName", req.getParameter("searchName"));
+		req.setAttribute("searchCompany", req.getParameter("searchCompany"));
 		req.setAttribute("page", req.getParameter("page"));
 		doGet(req, resp);
 	}
