@@ -20,12 +20,12 @@
 				</div>
 				<div class="form-group">
 					<label for="introduced">Introduced date</label> 
-					<input type="date" class="form-control" value="${fn:substring(computer.introduced, 0, 10)}" id="introduced" name="introduced" placeholder="Introduced">
+					<input type="date" class="form-control" value="${fn:substring(computer.introduced, 0, 10)}" id="introduced" name="introduced" placeholder="Introduced" required="required"/>
 					<span class="help-block">YYYY-MM-DD</span>
 				</div>
 				<div class="form-group">
 					<label for="discontinued">Discontinued date</label>
-					<input type="date" class="form-control" value="${fn:substring(computer.discontinued, 0, 10)}" id="discontinued" name="discontinued" placeholder="Discontinued" />
+					<input type="date" class="form-control" value="${fn:substring(computer.discontinued, 0, 10)}" id="discontinued" name="discontinued" placeholder="Discontinued" required="required"/>
 					<span class="help-block">YYYY-MM-DD</span>
 				</div>
 				<div class="form-group">

@@ -6,7 +6,7 @@ body {
 
 .jumbotron {
 	text-align: center;
-	border-radius: 10px!important;
+	border-radius: 10px !important;
 }
 
 header h1 {
@@ -28,6 +28,10 @@ table.computers .introduced, table.computers .discontinued {
 table.computers .company_name {
 	width: 30%;
 	min-width: 300px;
+}
+
+thead {
+	text-align: center!important;
 }
 
 .number {

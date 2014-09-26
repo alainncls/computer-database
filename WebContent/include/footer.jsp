@@ -15,7 +15,7 @@
 			<div class="col-md-4 col-sm-6">
 				<h4>Nous contacter</h4>
 				<i class="fa fa-phone"> 01.23.45.67.89</i><br /> <i
-					class="fa fa-envelope"> alain.nicolas@epfedu.fr</i><br /> <i
+					class="fa fa-envelope"> a.nicolas@epf.fr</i><br /> <i
 					class="fa fa-home"> 3 bis rue Lakanal 92330 SCEAUX</i>
 			</div>
 		</div>
