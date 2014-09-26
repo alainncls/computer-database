@@ -11,17 +11,13 @@
 	<div class="row" id="actions">
 		<div class="col-md-10">
 			<form action="" method="GET" class="form-inline" role="form">
-				<input type="search" id="searchbox" name="search"
-					class="form-control" value="${search}" placeholder="Search name" />
-				<input type="submit" id="searchsubmit" value="Filter by name"
-					class="btn btn-primary" />
-			</form>
-		</div>
-		<div class="col-md-10">
-			<form action="" method="GET" class="form-inline" role="form">
-				<input type="search" id="searchbox" name="search"
+				<input type="search" id="searchbox" name="searchName"
+					class="form-control" value="${searchName}" placeholder="Search name" />
+				<input type="search" id="searchbox" name="searchCompany"
 					class="form-control" value="${searchCompany}" placeholder="Search company" />
-				<input type="submit" id="searchsubmit" value="Filter by company"
+					
+					
+				<input type="submit" id="searchsubmit" value="Filter"
 					class="btn btn-primary" />
 			</form>
 		</div>
@@ -50,7 +46,7 @@
 				<tbody>
 					<c:forEach items="${computers}" var="computer">
 						<tr id="tr${computer.id}">
-							<td><a href="addComputer?id=${computer.id}" onclick="">${computer.name}</a></td>
+							<td><a href="addComputer?id=${computer.id}">${computer.name}</a></td>
 							<td>${computer.introduced}</td>
 							<td>${computer.discontinued}</td>
 							<td>${computer.company.name}</td>
@@ -77,7 +73,7 @@
 			<div class="text-center">
 				<ul class="pagination pagination-sm">
 					<c:if test="${currentPage != 1}">
-						<li><a href="?page=${currentPage - 1}&search=${search}">Previous</a></li>
+						<li><a href="?page=${currentPage - 1}&searchName=${searchName}&searchCompany=${searchCompany}">Previous</a></li>
 					</c:if>
 
 					<c:forEach begin="${(currentPage - 3)<=0?1:currentPage-3}"
@@ -88,13 +84,13 @@
 								<li class="active"><a href="">${i}</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="?page=${i}&search=${search}">${i}</a></li>
+								<li><a href="?page=${i}&searchName=${searchName}&searchCompany=${searchCompany}">${i}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:if test="${currentPage lt noOfPages}">
-						<li><a href="?page=${currentPage + 1}&search=${search}">Next</a></li>
+						<li><a href="?page=${currentPage + 1}&searchName=${searchName}&searchCompany=${searchCompany}">Next</a></li>
 					</c:if>
 				</ul>
 			</div>

@@ -36,22 +36,18 @@ public class ComputerDBService {
 		return computerDAO.getAll();
 	}
 
-	public List<Computer> getAll(String search) {
-		if (search != null && !search.isEmpty()) {
-			return computerDAO.getAll(search);
-		}
-		return computerDAO.getAll();
-	}
-
 	public List<Computer> getAll(Integer start, Integer length) {
 		return computerDAO.getAll(start, length);
 	}
+	
+	public List<Computer> getAll(Integer start, Integer length, String searchName) {
+		return computerDAO.getAll(start, length, searchName);
+	}
 
-	public List<Computer> getAll(String searchType, String search, Integer start, Integer length) {
-		if (searchType != null && !searchType.isEmpty() && search != null && !search.isEmpty()) {
-			return computerDAO.getAll(searchType, search, start, length);
-		}
-		return computerDAO.getAll(start, length);
+	public List<Computer> getAll(Integer start, Integer length, String searchName, String searchCompany) {
+		if(searchCompany!=null&&searchCompany!="")
+			return computerDAO.getAll(start, length, searchName, searchCompany);
+		return computerDAO.getAll(start, length, searchName);
 	}
 
 	public Computer get(Long id) {
@@ -62,11 +58,10 @@ public class ComputerDBService {
 		return computerDAO.getCount();
 	}
 
-	public Long getCount(String search) {
-		if (search != null && !search.isEmpty()) {
-			return computerDAO.getCount(search);
-		}
-		return computerDAO.getCount();
+	public Long getCount(String searchName, String searchCompany) {
+		if(searchCompany!=null&&searchCompany!="")
+			return computerDAO.getCount(searchName, searchCompany);
+		return computerDAO.getCount(searchName);
 	}
 
 	public boolean delete(Long id) {

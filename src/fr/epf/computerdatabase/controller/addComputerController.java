@@ -65,7 +65,8 @@ public class addComputerController extends HttpServlet {
 			computer.setId(Long.valueOf(id));
 			serviceComputer.update(computer);
 		}
-		doGet(req, resp);
+		
+		resp.sendRedirect("dashboard");
 	}
 
 	private Computer populateComputer(HttpServletRequest req) {
