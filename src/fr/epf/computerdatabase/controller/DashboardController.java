@@ -26,8 +26,6 @@ public class DashboardController extends HttpServlet {
 
 		List<Computer> computers = new ArrayList<>();
 
-		// computers = computerDBService.getAll();
-
 		String search = "";
 		String searchType = "";
 		
